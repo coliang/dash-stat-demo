@@ -4,6 +4,7 @@ from dash import dcc, html
 from dash.dash_table import DataTable
 from flask import Flask
 from pandas import DataFrame
+import plotly.express as px
 
 from .data import create_dataframe
 from .layout import html_layout
@@ -29,28 +30,19 @@ def init_dashboard(app: Flask):
 
     # Custom HTML layout
     dash_module.index_string = html_layout
-
+    df.sort_values(by="Regular Season")
+    fig = px.bar(df, 
+                 x=["passingYards","completions","passingAttempts","completionPct","yardsPerPassAttempt","passingTouchdowns","interceptions","longPassing","QBRating"],
+                 y=df["Regular Season"],
+                 title="Jayden Daniels",
+                 )
+    
     # Create Layout
     dash_module.layout = html.Div(
         children=[
             dcc.Graph(
                 id="histogram-graph",
-                figure={
-                    "data": [
-                        {
-                            "x": df["complaint_type"],
-                            "text": df["complaint_type"],
-                            "customdata": df["key"],
-                            "name": "311 Calls by region.",
-                            "type": "histogram",
-                        }
-                    ],
-                    "layout": {
-                        "title": "NYC 311 Calls category.",
-                        "height": 500,
-                        "padding": 150,
-                    },
-                },
+                figure=fig,
             ),
             create_data_table(df),
         ],

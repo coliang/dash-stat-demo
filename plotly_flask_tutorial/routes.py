@@ -17,7 +17,10 @@ def home():
 
 @app.route("/data")
 def data_func():
-    conn = psycopg2.connect("dbname='nfl' user='postgres' host='localhost' password='example'")
+    conn = psycopg2.connect("dbname='nfl' user='postgres' host='db' password='example'")
     cur = conn.cursor()
     cur.execute("SELECT * FROM quarterback LIMIT 50;")
-    return (cur.fetchone())
+    res = cur.fetchone()
+    cur.close()
+    conn.close()
+    return (str(res))

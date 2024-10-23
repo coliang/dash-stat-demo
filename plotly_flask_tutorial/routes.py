@@ -1,7 +1,7 @@
 """Routes for parent Flask app."""
 from flask import current_app as app
 from flask import render_template, request
-
+import psycopg2
 
 @app.route("/")
 def home():
@@ -14,3 +14,10 @@ def home():
         body="This is a homepage served with Flask.",
         base_url=request.base_url,
     )
+
+@app.route("/data")
+def data_func():
+    conn = psycopg2.connect("dbname='nfl' user='postgres' host='localhost' password='example'")
+    cur = conn.cursor()
+    cur.execute("SELECT * FROM quarterback LIMIT 50;")
+    return (cur.fetchone())

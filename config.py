@@ -22,3 +22,8 @@ class Config:
     STATIC_FOLDER = "static"
     TEMPLATES_FOLDER = "templates"
     COMPRESSOR_DEBUG = environ.get("COMPRESSOR_DEBUG")
+
+    # Postgres configs
+    POSTGRES_USER=""
+    POSTGRES_DB=""
+    POSTGRES_PW=""

@@ -11,14 +11,17 @@
   </a>
 </div>
 
-<div class='container'>
-  <h3>Data creator</h3>
+<div class='card'>
+  <h1 class="site-title">Data creator</h1>
     <form>
-          <a href="/data" class="card">
-            <button type="button">Generate Data</button>
-            <i class="fas fa-arrow-right"></i>
-            <span> {{ datatext }} </span>
-          </a>
+      <a href="/data" class="dash-link">
+        <button type="button" class="test-button">Generate Data</button>
+      </a>
     </form>
+    <div>
+      <a>
+        <span> {{ datatext }} </span>
+      </a>
+    </div>
 </div>
 {% endblock %}

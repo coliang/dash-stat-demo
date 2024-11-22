@@ -10,7 +10,7 @@ services:
 
   db:
     image: postgres
-    restart: always
+    #restart: always
     environment:
       - POSTGRES_PASSWORD="example"
     volumes:
@@ -22,7 +22,7 @@ services:
       
   adminer:
     image: adminer
-    restart: always
+    #restart: always
     ports:
       - "8080:8080"
 

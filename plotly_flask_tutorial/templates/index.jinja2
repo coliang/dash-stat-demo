@@ -4,7 +4,7 @@
 <div class="card">
   <img src="{{ url_for('static', filename='img/smiley.png') }}" class="logo" />
   <h1 class="site-title">{{ title }}</h1>
-  <p class="subtitle">Demo for testaaaaaa embedding Plotly Dash within Flask Apps (View source on <a href="https://github.com/toddbirchard/plotlydash-flask-tutorial">Github</a>).</p>
+  <p class="subtitle">Using demo app to mess with flask, docker, postgres and nfl data api (View source on <a href="https://github.com/toddbirchard/plotlydash-flask-tutorial">Github</a>).</p>
   <a href="/dashapp/" class="dash-link">
     <span>Embedded Plotly Dash</span>
     <i class="fas fa-arrow-right"></i>
@@ -12,15 +12,33 @@
 </div>
 
 <div class='card'>
-  <h1 class="site-title">Data creator</h1>
+  <h1 class="site-title">Pull data from DB</h1>
     <form>
       <a href="/data" class="dash-link">
         <button type="button" class="test-button">Generate Data</button>
       </a>
-    </form>
+    </form><br>
     <div>
       <a>
         <span> {{ datatext }} </span>
+      </a>
+    </div>
+</div>
+
+
+<div class='card'>
+  <h1 class="site-title">  Get data from nfl API </h1>
+  <p class="subtitle">Use the espn nfl api to get data on a player.</p>
+  <a href="/playerdata" class="dash-link">
+      <button type="button" class="test-button">Call data api</button><br>
+  </a><br>
+  <form>
+    <label for="playername">Player Name:</label><br>
+    <input type="text" id="playername" name="playername">
+  </form><br>
+  <div>
+      <a>
+        <span> {{ playertext }} </span>
       </a>
     </div>
 </div>

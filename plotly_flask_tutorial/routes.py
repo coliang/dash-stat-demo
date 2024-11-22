@@ -6,6 +6,7 @@ import psycopg2
 @app.route("/")
 def home():
     datatext = request.args.get('text', default="Generate some data", type = str)
+    playertext = request.args.get('playername', default="", type = str)
     """Home page of Flask Application."""
     return render_template(
         "index.jinja2",
@@ -15,6 +16,7 @@ def home():
         body="This is a homepage served with Flask.",
         base_url=request.base_url,
         datatext=datatext,
+        playertext=playertext,
     )
 
 @app.route("/data")
@@ -27,12 +29,7 @@ def data_func():
     conn.close()
 
     return redirect(url_for("home", text=str(res)))
-    # return render_template(
-    #     "index.jinja2",
-    #     title="Plotly Dash Flask Tutorial",
-    #     description="Embed Plotly Dash into your Flask applications.",
-    #     template="home-template",
-    #     body="This is a homepage served with Flask.",
-    #     base_url=request.base_url,
-    #     datatext=str(res),
-    # )
+
+@app.route("/playerdata")
+def player_data():
+    return redirect(url_for("home", playertext=request.form.get("playername")))

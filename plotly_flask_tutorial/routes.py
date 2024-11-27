@@ -1,12 +1,14 @@
 """Routes for parent Flask app."""
 from flask import current_app as app
-from flask import render_template, request, redirect, url_for
+from flask import render_template, request, redirect, url_for, session
 import psycopg2
+
+app.secret_key = "completelyrandomstring"
 
 @app.route("/")
 def home():
-    datatext = request.args.get('text', default="Generate some data", type = str)
-    playertext = request.args.get('playername', default="", type = str)
+    datatext = session["datatext"] if "datatext" in session else "test"
+    playername = session["playername"] if "playername" in session else "test2"
     """Home page of Flask Application."""
     return render_template(
         "index.jinja2",
@@ -16,7 +18,7 @@ def home():
         body="This is a homepage served with Flask.",
         base_url=request.base_url,
         datatext=datatext,
-        playertext=playertext,
+        playername=playername,
     )
 
 @app.route("/data")
@@ -27,9 +29,10 @@ def data_func():
     res = cur.fetchone()
     cur.close()
     conn.close()
+    session["datatext"] = str(res)
+    return redirect(url_for("home"))
 
-    return redirect(url_for("home", text=str(res)))
-
-@app.route("/playerdata")
+@app.route("/playerdata", methods = ['GET', 'POST'])
 def player_data():
-    return redirect(url_for("home", playertext=request.form.get("playername")))
+    session["playername"] = request.form.get("playername")
+    return redirect(url_for("home"))

@@ -29,16 +29,14 @@
 <div class='card'>
   <h1 class="site-title">  Get data from nfl API </h1>
   <p class="subtitle">Use the espn nfl api to get data on a player.</p>
-  <a href="/playerdata" class="dash-link">
-      <button type="button" class="test-button">Call data api</button><br>
-  </a><br>
-  <form>
+  <form action="/playerdata" method="POST">
     <label for="playername">Player Name:</label><br>
-    <input type="text" id="playername" name="playername">
+    <input type="text" id="playername" name="playername"><br><br>
+    <input type=submit name="submit" class="test-button">
   </form><br>
   <div>
       <a>
-        <span> {{ playertext }} </span>
+        <span> {{ playername }} </span>
       </a>
     </div>
 </div>

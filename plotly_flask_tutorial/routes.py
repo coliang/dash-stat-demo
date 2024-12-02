@@ -36,3 +36,8 @@ def data_func():
 def player_data():
     session["playername"] = request.form.get("playername")
     return redirect(url_for("home"))
+
+@app.route("/clear-data")
+def clear_data():
+    session.clear()
+    return redirect(url_for("home"))

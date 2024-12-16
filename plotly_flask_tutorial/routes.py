@@ -4,6 +4,12 @@ from flask import render_template, request, redirect, url_for, session
 import psycopg2
 
 app.secret_key = "completelyrandomstring"
+teams = [
+        '49ers', 'Bears', 'Bengals', 'Bills', 'Broncos', 'Browns', 'Buccaneers', 'Cardinals',
+        'Chargers', 'Chiefs', 'Colts', 'Commanders', 'Cowboys', 'Dolphins', 'Eagles', 'Falcons',
+        'Giants', 'Jaguars', 'Jets', 'Lions', 'Packers', 'Panthers', 'Patriots', 'Raiders', 
+        'Rams', 'Ravens', 'Saints', 'Seahawks', 'Steelers', 'Texans', 'Titans', 'Vikings'
+]
 
 @app.route("/")
 def home():
@@ -19,6 +25,7 @@ def home():
         base_url=request.base_url,
         datatext=datatext,
         playername=playername,
+        teams=teams,
     )
 
 @app.route("/data")

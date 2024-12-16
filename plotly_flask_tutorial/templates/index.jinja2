@@ -51,4 +51,12 @@
     </form><br>
 
 </div>
+
+<div class='card'>
+    <select id="selectvalue">
+        {% for t in teams %}
+            <option value="{{ t }}">{{ t }}</option>
+        {% endfor %}
+    </select> 
+</div>
 {% endblock %}

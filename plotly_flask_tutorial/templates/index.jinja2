@@ -41,6 +41,14 @@
     </div>
 </div>
 
+<div class='card'>
+    <h1 class="site-title">  Roster Pipeline </h1>
+    <select id="selectvalue">
+        {% for t in teams %}
+            <option value="{{ t }}">{{ t }}</option>
+        {% endfor %}
+    </select> 
+</div>
 
 <div class='card'>
   <h1 class="site-title"> Session Reset </h1>
@@ -50,13 +58,5 @@
       </a>
     </form><br>
 
-</div>
-
-<div class='card'>
-    <select id="selectvalue">
-        {% for t in teams %}
-            <option value="{{ t }}">{{ t }}</option>
-        {% endfor %}
-    </select> 
 </div>
 {% endblock %}
